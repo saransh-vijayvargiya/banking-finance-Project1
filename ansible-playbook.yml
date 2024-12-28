@@ -19,4 +19,4 @@
         enabled: yes    # Ensure Docker service starts on boot
         
   - name: Deploy Docker Container
-    command: sudo docker run -d -P saranshvijayvargiya/myproject1:latest
+    command: docker run -d -P saranshvijayvargiya/myproject1:12
