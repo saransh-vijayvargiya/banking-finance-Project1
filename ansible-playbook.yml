@@ -1,8 +1,22 @@
-- name : Configure Docker on EC2 Instances
-  hosts : localhost
-  become: true
-  tasks :
-  - name: updating apt
-    command : sudo apt-get update
+- name: Configure Docker on EC2 Instances
+  hosts: localhost  # Running on the same machine
+  become: true  # Ensure we are running with sudo (root) privileges
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600  # Cache is valid for 1 hour to avoid unnecessary updates
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present  # Ensure Docker is installed
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started  # Ensure Docker service is running
+        enabled: yes    # Ensure Docker service starts on boot
+        
   - name: Deploy Docker Container
     command: docker run -d -P saranshvijayvargiya/myproject1:latest
