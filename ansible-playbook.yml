@@ -18,5 +18,5 @@
         state: started  # Ensure Docker service is running
         enabled: yes    # Ensure Docker service starts on boot
         
-  - name: Deploy Docker Container
-    command: docker run -d -P saranshvijayvargiya/myproject1:12
+    - name: Deploy Docker Container with Latest Image
+      command: docker run -d -P saranshvijayvargiya/myproject1:latest
